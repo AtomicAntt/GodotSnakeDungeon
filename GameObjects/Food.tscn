@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Pizza-1.png.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.5, 7 )
+
+[node name="Food" type="Area2D" groups=["food"]]
+
+[node name="Pizza-1png" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, -1 )
+shape = SubResource( 1 )

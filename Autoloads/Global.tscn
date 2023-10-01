@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sounds/selecting.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Sounds/selected.wav" type="AudioStream" id=2]
+[ext_resource path="res://Autoloads/Global.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sounds/death.wav" type="AudioStream" id=4]
+
+[node name="Global" type="Node"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="ButtonSelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Effects"
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Effects"
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Effects"

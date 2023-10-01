@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Head.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Body.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sounds/crunch.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Sounds/hurt1.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sounds/hurt2.wav" type="AudioStream" id=6]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.104762, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.5, 6.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1, 3 )
+
+[node name="Player" type="Line2D"]
+points = PoolVector2Array( 9, 0 )
+width = 12.0
+width_curve = SubResource( 2 )
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 3 )
+texture_mode = 1
+script = ExtResource( 1 )
+
+[node name="BodyArea2D" type="Area2D" parent="." groups=["body"]]
+
+[node name="HeadArea2D" type="Area2D" parent="." groups=["head"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadArea2D"]
+position = Vector2( -1.5, 1.5 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="HeadArea2D"]
+texture = ExtResource( 2 )
+
+[node name="BiteArea2D" type="Area2D" parent="HeadArea2D/Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadArea2D/Sprite/BiteArea2D"]
+position = Vector2( 12, 1 )
+shape = SubResource( 3 )
+
+[node name="HungerTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="CrunchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Effects"
+
+[node name="Hurt1Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Effects"
+
+[node name="Hurt2Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Effects"
+
+[connection signal="area_entered" from="BodyArea2D" to="." method="_on_BodyArea2D_area_entered"]
+[connection signal="area_entered" from="HeadArea2D" to="." method="_on_HeadArea2D_area_entered"]
+[connection signal="area_entered" from="HeadArea2D/Sprite/BiteArea2D" to="." method="_on_BiteArea2D_area_entered"]
+[connection signal="timeout" from="HungerTimer" to="." method="_on_HungerTimer_timeout"]

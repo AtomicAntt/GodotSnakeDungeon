@@ -1,0 +1,316 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Assets/Fonts/Silkscreen/Silkscreen-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Main Menu.gd" type="Script" id=2]
+[ext_resource path="res://Assets/TitleScreen.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Music/cold-blooded_heat.wav" type="AudioStream" id=4]
+[ext_resource path="res://GameObjects/Button.tres" type="Theme" id=5]
+[ext_resource path="res://Assets/Slider.png" type="Texture" id=6]
+[ext_resource path="res://Assets/snake dungeon setting bg-1.png.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=11]
+size = 24
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 11 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=19]
+default_font = SubResource( 18 )
+
+[sub_resource type="DynamicFont" id=12]
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=13]
+default_font = SubResource( 12 )
+
+[sub_resource type="StyleBoxLine" id=28]
+color = Color( 0.917647, 0.87451, 0.87451, 1 )
+
+[sub_resource type="StyleBoxLine" id=10]
+color = Color( 0.917647, 0.87451, 0.87451, 1 )
+
+[sub_resource type="StyleBoxLine" id=29]
+
+[sub_resource type="Theme" id=30]
+HSlider/styles/grabber_area = SubResource( 28 )
+HSlider/styles/grabber_area_highlight = SubResource( 10 )
+HSlider/styles/slider = SubResource( 29 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=17]
+default_font = SubResource( 3 )
+Button/styles/focus = SubResource( 14 )
+Button/styles/hover = SubResource( 15 )
+Button/styles/normal = SubResource( 31 )
+Button/styles/pressed = SubResource( 16 )
+
+[sub_resource type="DynamicFont" id=20]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=21]
+default_font = SubResource( 20 )
+
+[sub_resource type="DynamicFont" id=23]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=22]
+default_font = SubResource( 23 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=25]
+default_font = SubResource( 24 )
+
+[node name="MainMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "Music"
+
+[node name="MainScreen" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="TextureRect" parent="MainScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -154.0
+margin_top = -58.0
+margin_right = 154.0
+margin_bottom = 58.0
+theme = ExtResource( 5 )
+
+[node name="GameTitle" type="Label" parent="MainScreen/VBoxContainer"]
+margin_right = 308.0
+margin_bottom = 31.0
+theme = SubResource( 2 )
+text = "Snake Dungeon"
+align = 1
+
+[node name="PlayButton" type="Button" parent="MainScreen/VBoxContainer"]
+margin_top = 35.0
+margin_right = 308.0
+margin_bottom = 56.0
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MainScreen/VBoxContainer"]
+margin_top = 60.0
+margin_right = 308.0
+margin_bottom = 81.0
+text = "Settings"
+
+[node name="LeaderboardButton" type="Button" parent="MainScreen/VBoxContainer"]
+margin_top = 85.0
+margin_right = 308.0
+margin_bottom = 106.0
+text = "Leaderboard"
+
+[node name="QuitButton" type="Button" parent="MainScreen/VBoxContainer"]
+margin_top = 110.0
+margin_right = 308.0
+margin_bottom = 131.0
+text = "Quit"
+
+[node name="HighscoreLabel" type="Label" parent="MainScreen"]
+margin_left = 233.0
+margin_top = 42.0
+margin_right = 310.0
+margin_bottom = 73.0
+rect_rotation = 13.1623
+theme = SubResource( 19 )
+text = "Highscore: N/A"
+align = 1
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="TextureRect" parent="Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -154.0
+margin_right = 154.0
+margin_bottom = 121.0
+theme = ExtResource( 5 )
+
+[node name="GameTitle" type="Label" parent="Settings/VBoxContainer"]
+margin_right = 308.0
+margin_bottom = 31.0
+theme = SubResource( 2 )
+text = "Settings"
+align = 1
+
+[node name="MusicLabel" type="Label" parent="Settings/VBoxContainer"]
+margin_top = 35.0
+margin_right = 308.0
+margin_bottom = 56.0
+theme = SubResource( 13 )
+text = "Music"
+align = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Settings/VBoxContainer"]
+margin_top = 60.0
+margin_right = 308.0
+margin_bottom = 76.0
+theme = SubResource( 30 )
+custom_icons/grabber_disabled = ExtResource( 6 )
+custom_icons/grabber_highlight = ExtResource( 6 )
+custom_icons/grabber = ExtResource( 6 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="EffectLabel" type="Label" parent="Settings/VBoxContainer"]
+margin_top = 80.0
+margin_right = 308.0
+margin_bottom = 101.0
+theme = SubResource( 13 )
+text = "Effects"
+align = 1
+
+[node name="EffectVolumeSlider" type="HSlider" parent="Settings/VBoxContainer"]
+margin_top = 105.0
+margin_right = 308.0
+margin_bottom = 121.0
+theme = SubResource( 30 )
+custom_icons/grabber_disabled = ExtResource( 6 )
+custom_icons/grabber_highlight = ExtResource( 6 )
+custom_icons/grabber = ExtResource( 6 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="BackButton" type="Button" parent="Settings"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+margin_right = 58.0
+theme = SubResource( 17 )
+text = "Back"
+
+[node name="Leaderboard" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="TextureRect" parent="Leaderboard"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+
+[node name="Leaderboard" type="VBoxContainer" parent="Leaderboard"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -154.0
+margin_top = -95.0
+margin_right = 154.0
+margin_bottom = 26.0
+theme = ExtResource( 5 )
+
+[node name="BackButton" type="Button" parent="Leaderboard"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -21.0
+margin_right = 58.0
+theme = SubResource( 17 )
+text = "Back"
+
+[node name="LeaderboardLabel" type="Label" parent="Leaderboard"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -154.0
+margin_right = 154.0
+margin_bottom = 21.0
+theme = SubResource( 21 )
+text = "Leaderboard"
+align = 1
+
+[node name="LoadingLabel" type="Label" parent="Leaderboard"]
+margin_left = 6.0
+margin_top = 25.0
+margin_right = 314.0
+margin_bottom = 36.0
+theme = SubResource( 22 )
+text = "Loading..."
+align = 1
+
+[node name="CheckLeaderboardTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="PlayerNameLabel" type="Label" parent="."]
+margin_right = 64.0
+margin_bottom = 11.0
+theme = SubResource( 25 )
+text = "Player Name"
+align = 1
+
+[connection signal="mouse_entered" from="MainScreen/VBoxContainer/PlayButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="MainScreen/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="mouse_entered" from="MainScreen/VBoxContainer/SettingsButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="MainScreen/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="mouse_entered" from="MainScreen/VBoxContainer/LeaderboardButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="MainScreen/VBoxContainer/LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
+[connection signal="mouse_entered" from="MainScreen/VBoxContainer/QuitButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="MainScreen/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="value_changed" from="Settings/VBoxContainer/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="value_changed" from="Settings/VBoxContainer/EffectVolumeSlider" to="." method="_on_EffectVolumeSlider_value_changed"]
+[connection signal="mouse_entered" from="Settings/BackButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="Settings/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="mouse_entered" from="Leaderboard/BackButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="Leaderboard/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="timeout" from="CheckLeaderboardTimer" to="." method="_on_CheckLeaderboardTimer_timeout"]
